@@ -1,4 +1,4 @@
-# Dockerfile
+# Dockerfile para frontend
 
 # Usar una imagen base oficial de Node
 FROM node:14

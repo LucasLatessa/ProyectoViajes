@@ -1,4 +1,4 @@
-# Dockerfile
+# Dockerfile para backend
 
 # Usar una imagen base oficial de Python
 FROM python:3.10-slim

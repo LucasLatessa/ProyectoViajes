@@ -1,4 +1,4 @@
-version: '1'
+version: '3'
 services:
   frontend:
     build:
@@ -15,6 +15,3 @@ services:
       - "8000:8000"
     environment:
       - DEBUG=1  # Configuración opcional dependiendo de tu entorno Django
-
-# Elimina el servicio de database PostgreSQL
-# No es necesario si estás usando SQLite con Django en tu entorno actual de desarrollo
