@@ -1,0 +1,4 @@
+Construir y levantar los servicios
+docker-compose up --build
+Detener servicios:
+docker-compose down

@@ -1,0 +1,11 @@
+setup:
+  # Instrucciones para Heroku sobre cómo configurar la aplicación antes de ejecutarla
+  docker:
+    web: Dockerfile
+
+build:
+  docker:
+    web: Dockerfile
+
+run:
+  web: docker-compose up

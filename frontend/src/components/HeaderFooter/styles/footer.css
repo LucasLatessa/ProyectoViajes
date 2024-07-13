@@ -1,0 +1,54 @@
+main {
+  min-height: 60vh;
+}
+
+/*Footer abajo siempre*/
+footer {
+    /*position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;*/
+    background-color: var(--color-principal);
+}
+
+nav.redesSociales{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding-left: 1rem;
+    border-bottom: 2px solid rgb(63, 120, 255);
+}
+
+nav.redesSociales li{
+    text-decoration: none;
+    list-style: none;
+}
+
+nav.redesSociales li a img{
+    width: 2rem;
+    padding: 0.7rem 0.5rem;
+}
+
+.copyright{
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.copyright em{
+    font-size: 0.7rem;
+    color: var(--color-letras-secundario);
+}
+.link-ayuda {
+    display: inline-block;
+    color: white; 
+    text-decoration: none; 
+    font-size: 16px;
+    transition: background-color 0.3s ease; 
+}
+  
+  .link-ayuda:hover {
+    color: var(--color-letras-cuaternario);
+  }
+  
+  
