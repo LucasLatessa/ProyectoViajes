@@ -1,0 +1,93 @@
+/* CreateViaje.css */
+
+.create-viaje-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-viaje-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .form-input,
+  .form-textarea,
+  .Places {
+    margin-top: 5px; /* Ajuste de espacio entre elementos */
+    width: calc(100% - 20px); /* Ajuste del ancho, considerando el padding */
+    padding: 8px; /* Padding uniforme */
+    border: 1px solid #ccc; /* Borde uniforme */
+    border-radius: 5px; /* Borde redondeado */
+    box-sizing: border-box; /* Incluye el padding y borde en el ancho total */
+  }
+  
+  .form-input[type="number"]::-webkit-inner-spin-button,
+  .form-input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .form-textarea {
+    resize: none; /* Evita que el textarea sea redimensionable */
+  }
+  
+  .form-button {
+    margin-top: 10px; /* Espacio adicional arriba del botón */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  /* Ajuste de estilo para el componente Places */
+  .Places {
+    margin-top: 5px;
+  }
+  
+  /* Ajuste de estilo para el combobox en el componente Places */
+  .combobox-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .combobox-popover {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .combobox-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .combobox-option {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .combobox-option:hover {
+    background-color: #f0f0f0;
+  }
+  

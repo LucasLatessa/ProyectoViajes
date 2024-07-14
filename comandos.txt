@@ -1,29 +1,4 @@
-#Crear aplicacion
-    python manage.py startapp nombre_de_la_app
-
-# Crear migraciones
-    python manage.py makemigrations
-
-# Aplicar migraciones
-    python manage.py migrate
-    python manage.py runserver
-
-#Crear usuario administrador db
-    python manage.py createsuperuser
-
-#Entorno virtual:
-#Crear: 
-    python -m venv venv
-#Activar:
-    .\venv\Scripts\activate
-#Desactivar:
-    deactivate
-
-#Instalar todas las dependencias listadas en un entorno:
-    pip install -r requirements.txt
-
-#Generar requirements este archivo en cualquier entorno virtual usando:
-    pip freeze > requirements.txt
-
-
-
+Construir y levantar los servicios
+docker-compose up --build
+Detener servicios:
+docker-compose down
