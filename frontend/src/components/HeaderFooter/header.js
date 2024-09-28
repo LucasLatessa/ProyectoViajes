@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import "./styles/header.css"; // Asegúrate de tener este archivo CSS
+import "./styles/header.css";
 import { Link } from "react-router-dom";
 
-// Header del sitio
 export const Header = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLoginClick = () => {
     loginWithRedirect();
@@ -17,12 +17,16 @@ export const Header = () => {
     navigate("/profile");
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <header className="header-principal">
       <div className="logo">
         <Link to="/">CarShare</Link>
       </div>
-      <nav className="nav-bar">
+      <nav className={`nav-bar ${menuOpen ? "open" : ""}`}>
         <ul className="nav-links">
           <li>
             <Link to="/">Home</Link>
@@ -37,13 +41,14 @@ export const Header = () => {
       </nav>
       <div className="auth-buttons">
         {isAuthenticated ? (
-          <>
-            <button onClick={handleProfileClick}>Profile</button>
-          </>
+          <button onClick={handleProfileClick}>Profile</button>
         ) : (
           <button onClick={handleLoginClick}>Login</button>
         )}
       </div>
+      <button className="menu-toggle" onClick={toggleMenu}>
+        ☰
+      </button>
     </header>
   );
 };

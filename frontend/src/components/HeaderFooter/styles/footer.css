@@ -4,10 +4,10 @@ main {
 
 /*Footer abajo siempre*/
 footer {
-    /*position: fixed;
-    left: 0;
+    /* position: fixed;
     bottom: 0;
-    width: 100%;*/
+    margin-bottom: 10px; */
+    width: 98.5%;
     background-color: var(--color-principal);
 }
 

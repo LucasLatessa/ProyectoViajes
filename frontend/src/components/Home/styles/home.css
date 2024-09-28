@@ -5,22 +5,30 @@
 /* Estilos Filtros */
 .sectionFiltros {
   background-color: var(--color-fondo-claro);
-  padding: 10px;
-  width: 70%;
+  display: flex;
+  flex-direction: column;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin: 10px auto; 
+  transition: width 0.3s ease, padding 0.3s ease; /* Transiciones suaves */
+  padding: 5px;
+  margin: 10px;
 }
 
 .tituloFiltros {
-  text-align: center;
-  margin-bottom: 5px;
+  cursor: pointer;
+  margin: 0; 
+  padding: 0;
+}
+.sectionFiltros.collapsed {
+  width: 80px; 
+  height:35px; 
+  justify-content: flex-start;
+  padding: 5px; 
 }
 
 .formFiltros {
   display: flex;
   flex-direction: row; 
-  gap: 15px;
+  gap: 10px;
   justify-content: center;
   flex-wrap: wrap;  
 }

@@ -1,44 +1,58 @@
-/*Reset.css
+/* Reset.css
 @import url(reset.css);*/
 
-/*Fuente Poppins*/
+/* Fuente Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
-/* Estilo basico del sitio en raiz */
+/* Estilo básico del sitio */
 :root {
-  body {
-    background-color: var(--color-fondo); /* Color de fondo oscuro, por ejemplo, gris oscuro */
-      }
-  /* Colores a utilizar */
+  /* Colores base */
   --color-principal: #051934;
   --color-principal-claro: #ffffff;
   --color-secundario: #133C68;
-  --color-fondo: #181617;
 
   /* Letras */
   --color-letras-primario: #000;
-  --color-letras-secundario: #ffffff;
+  --color-letras-secundario: #ffffff; /* Color para modo oscuro por defecto */
   --color-letras-terciario: red;
   --color-letras-cuaternario: #133C68;
 
   /* Nuevas definiciones basadas en los colores principales */
-  
-  /* Color de fondo alternativo */
-  --color-fondo-claro: #ffffff;
-  
+  --color-fondo: #181617; /* Fondo oscuro por defecto */
+  --color-fondo-claro: #ffffff; /* Color de fondo alternativo */
+
   /* Colores para botones */
   --color-boton-principal: #007bff;
   --color-boton-secundario: #0056b3;
-  
+
   /* Colores de bordes */
   --color-borde: #ccc;
-  
-  
+
   /* Colores de fondo para secciones */
   --color-fondo-seccion: #e0e0e0;
 
-  /*Fuentes*/
-  font-family: "Poppins", "Black regular";
+  /* Fuentes */
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
+}
+
+/* Aplicar color de fondo al cuerpo */
+body {
+  background-color: var(--color-fondo); /* Usa el color de fondo según el modo */
   }
+
+/* Modo claro */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-fondo: #ffffff; /* Fondo claro */
+    --color-letras-secundario: #000; /* Letras oscuras */
+  }
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-fondo: #181617; /* Fondo oscuro */
+    --color-letras-secundario: #ffffff; /* Letras claras */
+  }
+}

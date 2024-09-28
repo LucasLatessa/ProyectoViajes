@@ -13,7 +13,6 @@ const TusViajes = ({ nickname }) => {
         try {
           const response = await getViajesByCliente(nickname);
           setViajes(response.data);
-          console.log(response.data);
         } catch (error) {
           setError('Error al cargar los viajes.');
           console.error('Error al cargar los viajes:', error);
@@ -49,7 +48,6 @@ const TusViajes = ({ nickname }) => {
               <Link to={`/viaje/${viaje.viaje_id}/postulaciones`}>
                 <button>Ver Postulaciones</button>
               </Link>
-              {/* Aquí podrías agregar más detalles según necesites */}
             </div>
           ))}
         </div>
