@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-9hx6=5g-73)h%$&d4q$gg^v7bo85%w4=y@0s127j(^i@h)zktb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['your_domain.com', 'www.your_domain.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['https://carsharee.vercel.app/', 'www.your_domain.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -89,7 +89,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+""" DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'viajes',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',  # O la dirección del servidor si no está en localhost
+        'PORT': '3306',       # El puerto por defecto de MySQL
+    }
+} """
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
