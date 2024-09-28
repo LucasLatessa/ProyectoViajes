@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-9hx6=5g-73)h%$&d4q$gg^v7bo85%w4=y@0s127j(^i@h)zktb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://carsharee.vercel.app/', 'www.your_domain.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['carsharee.vercel.app', 'proyectoviajes.onrender.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
