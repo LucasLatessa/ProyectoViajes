@@ -146,7 +146,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:8000",
     "https://localhost:4040",
-    "https://192.168.0.111:4040"
+    "https://192.168.0.111:4040",
+    "https://carsharee.vercel.app"
     ]
 
 CORS_ALLOW_METHODS = [
@@ -175,7 +176,9 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:80",  # Añade el host local si lo necesitas
     "https://localhost:80",  # Añade el host local si lo necesitas
     "http://localhost:3000",
-    "https://localhost:3000"
+    "https://localhost:3000",
+    "https://carsharee.vercel.app",
+    "https://proyectoviajes.onrender.com"
     ]
 
 REST_FRAMEWORK = {
