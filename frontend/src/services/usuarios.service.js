@@ -4,7 +4,7 @@ import axios from "./axios";
 //const apiServerUrl = process.env.REACT_APP_DJANGO_BACKEND
 
 const usersAPI = axios.create({
-  baseURL: `${axios.defaults.baseURL}/usuarios/Usuario/`
+  baseURL: `${axios.defaults.baseURL}/usuarios/Usuario`
 })
 export const getAllUsers = () => usersAPI.get('/');
 export const getUserId = (id) => usersAPI.get(`/${id}/`);
