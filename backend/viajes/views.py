@@ -7,6 +7,11 @@ from rest_framework.decorators import api_view
 from django.utils.timezone import localtime
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import send_mail
+from django.conf import settings
+from datetime import datetime
+import pytz
+from zoneinfo import ZoneInfo
 from .serializer import ViajeSerializer, PostulacionSerializer
 from .models import Viaje, Usuario, Postulacion
 
@@ -122,6 +127,11 @@ def cambiar_estado_postu(request, postu_id):
                 # Decrementar el número de asientos disponibles en el viaje
                 viaje.asientos_disponibles -= 1
                 viaje.save()
+                # Obtener el usuario y el viaje relacionados con la postulación
+                usuario = postulacion.usuario
+
+                # Enviar el correo al usuario
+                enviar_correo_postulacion_aceptada(usuario.email, usuario.nickname, viaje)
                 
                 return JsonResponse({'mensaje': 'Estado de postulación actualizado correctamente'}, status=200)
             else:
@@ -143,6 +153,32 @@ def cambiar_estado_postu(request, postu_id):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
     
+def enviar_correo_postulacion_aceptada(usuario_email, nombre_usuario, viaje):
+    asunto = 'CarShare - ¡Tu postulación ha sido aceptada!'
+    fecha_hora_viaje = viaje.fecha_hora.astimezone(ZoneInfo('America/Argentina/Buenos_Aires'))
+
+    # Formatear la fecha y hora
+    fecha_formateada = fecha_hora_viaje.strftime("%d/%m/%Y %H:%M").lstrip("0").replace(" 0", " ")
+    mensaje = (
+    f'Hola {nombre_usuario},\n\n'
+    f'Tu postulación ha sido aceptada. ¡Felicitaciones!\n\n'
+    'Información del viaje:\n'
+    f'Organizador: {viaje.organizador}\n'
+    f'Origen: {viaje.origen_direccion}\n'
+    f'Destino: {viaje.destino_direccion}\n'
+    f'Fecha y hora de viaje: {fecha_formateada}\n'  # Usa la fecha formateada aquí
+    f'Descripción: {viaje.descripcion}\n'
+    f'Costo por asiento: ${viaje.costo_por_asiento}\n\n'
+    'Si vas a viajar con alguien que no conoces, cuéntales a familiares y amigos adónde vas. '
+    'Usa la función de compartir la ubicación en tiempo real directamente con un amigo o familiar '
+    'durante el viaje.\n\n'
+    'Atentamente, el equipo de CarShare.'
+    )
+    remitente = settings.DEFAULT_FROM_EMAIL
+    destinatario = [usuario_email]
+
+    send_mail(asunto, mensaje, remitente, destinatario)
+
 def postulaciones_por_viaje(request, viaje_id):
     try:
         postulaciones = Postulacion.objects.filter(viaje_id=viaje_id)
