@@ -10,7 +10,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.conf import settings
 from datetime import datetime
-import pytz
 from zoneinfo import ZoneInfo
 from .serializer import ViajeSerializer, PostulacionSerializer
 from .models import Viaje, Usuario, Postulacion
