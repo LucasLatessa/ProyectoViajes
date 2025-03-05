@@ -6,7 +6,7 @@ import { getAllViajes } from '../../services/viajes.service';
 import ViajeCard from './Viaje/viajeCard'; // Importar el componente ViajeCard
 import './styles/home.css';
 
-export const Home = () => {
+export const Home = () => { 
   const [viajes, setViajes] = useState([]);
   const [searchOrigen, setSearchOrigen] = useState("");
   const [searchDestino, setSearchDestino] = useState("");
