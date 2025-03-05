@@ -51,43 +51,33 @@
     cursor: pointer;
     border-radius: 5px;
   }
-  
-  /* Ajuste de estilo para el componente Places */
-  .Places {
-    margin-top: 5px;
-  }
-  
-  /* Ajuste de estilo para el combobox en el componente Places */
-  .combobox-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .combobox-popover {
-    position: absolute;
-    background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ccc;
-    z-index: 1000;
-    max-height: 200px;
-    overflow-y: auto;
-  }
-  
-  .combobox-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .combobox-option {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .combobox-option:hover {
-    background-color: #f0f0f0;
-  }
-  
+/* Estilo para los selects */
+.form-select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  box-sizing: border-box;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Estilo cuando el select está en foco */
+.form-select:focus {
+  border-color: #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para las opciones del select */
+.form-option {
+  padding: 10px;
+  background-color: white;
+  font-size: 16px;
+}
+
+/* Estilo cuando una opción está seleccionada */
+.form-option:checked {
+  background-color: #007bff;
+  color: white;
+}

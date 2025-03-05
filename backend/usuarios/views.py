@@ -13,7 +13,7 @@ class UsuarioView(viewsets.ModelViewSet):
 def get_usuario_by_nickname(request, nickname):
     try:
         usuario = Usuario.objects.get(nickname=nickname)
-
+        
         usuario_data = {
             'user_id': usuario.user_id,
             'nickname': usuario.nickname,

@@ -1,26 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import Places from "../../places";
-import { crearViaje } from "../../../services/viajes.service";
+import { crearViaje, getLugares } from "../../../services/viajes.service";
 import "../styles/createViaje.css";
 
 export const CreateViaje = ({ nickname }) => {
   const { user, isAuthenticated, loginWithRedirect } = useAuth0();
   const [error, setError] = useState("");
+  const [lugares, setLugares] = useState([]);
   const [formData, setFormData] = useState({
     fechaHora: "",
     asientosDisponibles: "",
     costoPorAsiento: "",
     descripcion: "",
-    origenDireccion: "",
-    origenLatitud: null,
-    origenLongitud: null,
-    destinoDireccion: "",
-    destinoLatitud: null,
-    destinoLongitud: null,
+    origen: "",
+    destino: ""
   });
-
+  useEffect(() => {
+    const fetchLugares = async () => {
+      try {
+        const response = await getLugares();
+        setLugares(response.data);
+      } catch (error) {
+        console.error("Error al obtener los lugares:", error);
+      }
+    };
+    fetchLugares();
+  }, []);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -33,24 +39,14 @@ export const CreateViaje = ({ nickname }) => {
 
   const handleCreateViaje = async (e) => {
     e.preventDefault();
-
-    if (!formData.origenDireccion || !formData.destinoDireccion) {
-      alert("Por favor, selecciona una dirección de origen y destino.");
-      return;
-    }
-
     try {
       const response = await crearViaje({
         fecha_hora: formData.fechaHora,
         asientos_disponibles: parseInt(formData.asientosDisponibles), 
         costo_por_asiento: parseFloat(formData.costoPorAsiento),
         descripcion: formData.descripcion,
-        origen_direccion: formData.origenDireccion,
-        origen_latitud: parseFloat(formData.origenLatitud),
-        origen_longitud: parseFloat(formData.origenLongitud),
-        destino_direccion: formData.destinoDireccion,
-        destino_latitud: parseFloat(formData.destinoLatitud),
-        destino_longitud: parseFloat(formData.destinoLongitud),
+        origen: formData.origen,
+        destino: formData.destino,
         organizador_nickname: user.nickname,
       });
 
@@ -60,24 +56,6 @@ export const CreateViaje = ({ nickname }) => {
       console.error("Error al crear el viaje:", error);
       alert("Error al crear el viaje. Por favor, verifica los datos e intenta de nuevo.");
     }
-  };
-
-  const handleOrigenSelect = (location) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      origenDireccion: location.address,
-      origenLatitud: location.lat,
-      origenLongitud: location.lng,
-    }));
-  };
-
-  const handleDestinoSelect = (location) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      destinoDireccion: location.address,
-      destinoLatitud: location.lat,
-      destinoLongitud: location.lng,
-    }));
   };
 
   if (!isAuthenticated) {
@@ -143,11 +121,25 @@ export const CreateViaje = ({ nickname }) => {
         </label>
         <label className="form-label">
           Origen:
-          <Places setSelectedLocation={handleOrigenSelect} />
+          <select name="origen" value={formData.origen} onChange={handleChange} required className="form-select">
+            <option value="">Seleccione un origen</option>
+            {lugares.map((lugar) => (
+              <option key={lugar.lugar_id} value={lugar.descripcion}  className="form-option">
+                {lugar.descripcion}
+              </option>
+            ))}
+          </select>
         </label>
         <label className="form-label">
           Destino:
-          <Places setSelectedLocation={handleDestinoSelect} />
+          <select name="destino" value={formData.destino} onChange={handleChange} required className="form-select">
+            <option value="">Seleccione un destino</option>
+            {lugares.map((lugar) => (
+              <option key={lugar.lugar_id} value={lugar.descripcion}  className="form-option">
+                {lugar.descripcion}
+              </option>
+            ))}
+          </select>
         </label>
         <button type="submit" className="form-button">
           Crear Viaje

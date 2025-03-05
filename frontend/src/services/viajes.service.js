@@ -8,7 +8,7 @@ const viajesAPI = axios.create({
   withCredentials: true,
 })
 export const getAllViajes = () => viajesAPI.get(`/`);
-
+export const getLugares = () => viajesAPI.get(`/lugares`);
 export const getViajesByCliente = (nickname) => viajesAPI.get(`/viajes_por_organizador/${nickname}/`);
 
 export const getPostulacionesByViaje = (id) => viajesAPI.get(`/postulaciones_por_viaje/${id}/`);
@@ -37,8 +37,8 @@ export const postularseAViaje = (viajeId, nickname) => viajesAPI.post('/postular
   });
 };
  */
-// Función para obtener el valor de una cookie por su nombre
+/* // Función para obtener el valor de una cookie por su nombre
 function getCookie(name) {
   const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
   return cookieValue ? cookieValue.pop() : '';
-}
+} */

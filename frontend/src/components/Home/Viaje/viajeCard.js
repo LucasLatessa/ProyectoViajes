@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ViajeCard = ({ viaje }) => {
   return (
     <div className="viaje-card">
-      <h3>{viaje.destino_direccion}</h3>
+      <h3>{viaje.destino}</h3>
       <p>
         <strong>Fecha:</strong> {new Date(viaje.fecha_hora).toLocaleDateString()}
       </p>
@@ -18,10 +18,10 @@ const ViajeCard = ({ viaje }) => {
         <strong>Descripción:</strong> {viaje.descripcion}
       </p> */}
       <p>
-        <strong>Origen:</strong> {viaje.origen_direccion}
+        <strong>Origen:</strong> {viaje.origen}
       </p>
       <p>
-        <strong>Destino:</strong> {viaje.destino_direccion}
+        <strong>Destino:</strong> {viaje.destino}
       </p>
       <Link to={`/viaje/${viaje.viaje_id}`} className="ver-mas-link">
         Ver detalles del viaje

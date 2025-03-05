@@ -11,8 +11,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from .serializer import ViajeSerializer, PostulacionSerializer
-from .models import Viaje, Usuario, Postulacion
+from .serializer import ViajeSerializer, PostulacionSerializer, LugarSerializer
+from .models import Viaje, Usuario, Postulacion, Lugar
 
 
 # Create your views here.
@@ -22,6 +22,9 @@ class ViajeView(viewsets.ModelViewSet):
 class PostulacionView(viewsets.ModelViewSet):
     serializer_class = PostulacionSerializer
     queryset = Postulacion.objects.all()
+class LugarView(viewsets.ModelViewSet):
+    serializer_class = LugarSerializer
+    queryset = Lugar.objects.all()
 
 @csrf_exempt
 @api_view(['POST'])
@@ -35,18 +38,16 @@ def create(request):
         if not fecha_hora:
             return JsonResponse({'error': 'El campo fecha_hora es requerido'}, status=400)
         
+        origen = get_object_or_404(Lugar, descripcion=data.get('origen'))
+        destino = get_object_or_404(Lugar, descripcion=data.get('destino'))
         # Aquí se realizaría la creación del objeto Viaje con los datos recibidos
         nuevo_viaje = Viaje.objects.create(
             fecha_hora=fecha_hora,
             asientos_disponibles=data.get('asientos_disponibles', 0),
             costo_por_asiento=data.get('costo_por_asiento', 0.0),
             descripcion=data.get('descripcion', ''),
-            origen_direccion=data.get('origen_direccion', ''),
-            origen_latitud=data.get('origen_latitud', None),
-            origen_longitud=data.get('origen_longitud', None),
-            destino_direccion=data.get('destino_direccion', ''),
-            destino_latitud=data.get('destino_latitud', None),
-            destino_longitud=data.get('destino_longitud', None),
+            origen=origen,
+            destino=destino,
             organizador=Usuario.objects.get(nickname=data.get('organizador_nickname'))
         )
         
@@ -104,6 +105,15 @@ def viajes_por_organizador(request, nickname):
         return JsonResponse({'error': 'Organizador no encontrado'}, status=404)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
+
+def lugares(request):
+    try:
+        lugares = Lugar.objects.filter()
+        serializer = LugarSerializer(lugares, many=True)
+        return JsonResponse(serializer.data, safe=False, status=200)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
 
 @csrf_exempt
 @api_view(['PUT'])
@@ -163,8 +173,8 @@ def enviar_correo_postulacion_aceptada(usuario_email, nombre_usuario, viaje):
     f'Tu postulación ha sido aceptada. ¡Felicitaciones!\n\n'
     'Información del viaje:\n'
     f'Organizador: {viaje.organizador}\n'
-    f'Origen: {viaje.origen_direccion}\n'
-    f'Destino: {viaje.destino_direccion}\n'
+    f'Origen: {viaje.origen}\n'
+    f'Destino: {viaje.destino}\n'
     f'Fecha y hora de viaje: {fecha_formateada}\n'  # Usa la fecha formateada aquí
     f'Descripción: {viaje.descripcion}\n'
     f'Costo por asiento: ${viaje.costo_por_asiento}\n\n'

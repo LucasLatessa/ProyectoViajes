@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { Header } from '../../HeaderFooter/header';
 import { Footer } from '../../HeaderFooter/footer';
 import { getViaje, postularseAViaje } from '../../../services/viajes.service';
-import { getUserId } from '../../../services/usuarios.service';
 import '../styles/home.css'; // Importar los estilos CSS
 
 const ViajePage = () => {
@@ -21,8 +20,7 @@ const ViajePage = () => {
         const response = await getViaje(id); // Obtener los datos del viaje usando su id
         setViaje(response.data);
         // Obtener los datos del organizador usando el id del organizador del viaje
-        const responseOrganizador = await getUserId(response.data.organizador);
-        setOrganizador(responseOrganizador.data);
+        setOrganizador(response.data.organizador);
       } catch (error) {
         setError('Error al cargar el viaje.');
         console.error('Error al cargar el viaje:', error);
@@ -72,15 +70,20 @@ const ViajePage = () => {
               <p><strong>Asientos Disponibles:</strong> {viaje.asientos_disponibles}</p>
               <p><strong>Costo por Asiento:</strong> ${viaje.costo_por_asiento}</p>
               <p><strong>Descripción:</strong> {viaje.descripcion}</p>
-              <p><strong>Origen:</strong> {viaje.origen_direccion}</p>
-              <p><strong>Destino:</strong> {viaje.destino_direccion}</p>
-              <p><strong>Organizador:</strong> {organizador.nickname}</p>
+              <p><strong>Origen:</strong> {viaje.origen}</p>
+              <p><strong>Destino:</strong> {viaje.destino}</p>
+              <p><strong>Organizador:</strong> {organizador}</p>
             </div>
             {isAuthenticated ? (
               <button onClick={handlePostularse}>Postularme</button>
             ) : (
               <div className="login-message">
-                <p>Para postularte viajes, por favor <a href="" onClick={loginWithRedirect}>inicia sesión</a>.</p>
+                <p>
+                  Para postularte a viajes, por favor{" "}
+                  <button onClick={loginWithRedirect} className="link-button">
+                    inicia sesión
+                  </button>
+                </p>
               </div>
             )}
           </section>

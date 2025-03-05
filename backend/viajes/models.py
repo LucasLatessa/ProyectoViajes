@@ -1,6 +1,12 @@
 from django.db import models
 from usuarios.models import Usuario
 
+class Lugar(models.Model):
+    lugar_id= models.AutoField(primary_key=True)
+    descripcion = models.TextField()
+    def __str__(self):
+        return f"{self.descripcion}"
+    
 class Viaje(models.Model):
     viaje_id= models.AutoField(primary_key=True)
     fecha_hora = models.DateTimeField()
@@ -8,18 +14,21 @@ class Viaje(models.Model):
     costo_por_asiento = models.DecimalField(max_digits=10, decimal_places=2)
     descripcion = models.TextField()
     organizador = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    
-    # Campos adicionales para integración con Google Maps, por ejemplo
+    origen = models.ForeignKey('Lugar', on_delete=models.CASCADE, related_name='viajes_origen')
+    destino = models.ForeignKey('Lugar', on_delete=models.CASCADE, related_name='viajes_destino')
+    """ # Campos adicionales para integración con Google Maps, por ejemplo
     origen_direccion = models.CharField(max_length=500, blank=True, null=True)
     origen_latitud = models.DecimalField(max_digits=20, decimal_places=6, blank=True, null=True)
     origen_longitud = models.DecimalField(max_digits=20, decimal_places=6, blank=True, null=True)
     destino_direccion = models.CharField(max_length=500, blank=True, null=True)
     destino_latitud = models.DecimalField(max_digits=20, decimal_places=6, blank=True, null=True)
-    destino_longitud = models.DecimalField(max_digits=20, decimal_places=6, blank=True, null=True)
+    destino_longitud = models.DecimalField(max_digits=20, decimal_places=6, blank=True, null=True) """
 
     def __str__(self):
-        return f"Viaje el {self.fecha_hora} de {self.origen_direccion} a {self.destino_direccion}"
+        return f"Viaje el {self.fecha_hora} de {self.origen} a {self.destino}"
 
+
+    
 class Postulacion(models.Model):
     ESTADOS = (
         ('pendiente', 'Pendiente'),
