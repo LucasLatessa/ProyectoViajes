@@ -27,7 +27,7 @@ NGROK_URL = os.environ.get('NGROK_URL')
 SECRET_KEY = 'django-insecure-9hx6=5g-73)h%$&d4q$gg^v7bo85%w4=y@0s127j(^i@h)zktb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['carsharee.vercel.app', 'proyectoviajes.onrender.com', '127.0.0.1', 'localhost',
                   'proyectoviajes-production.up.railway.app']
