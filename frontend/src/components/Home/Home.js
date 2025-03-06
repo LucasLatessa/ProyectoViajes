@@ -39,12 +39,12 @@ export const Home = () => {
 
     if (searchOrigen) {
       filtered = filtered.filter((viaje) =>
-        viaje.origen_direccion.toLowerCase().includes(searchOrigen.toLowerCase())
+        viaje.origen.toLowerCase().includes(searchOrigen.toLowerCase())
       );
     }
     if (searchDestino) {
       filtered = filtered.filter((viaje) =>
-        viaje.destino_direccion.toLowerCase().includes(searchDestino.toLowerCase())
+        viaje.destino.toLowerCase().includes(searchDestino.toLowerCase())
       );
     }
     if (dateDesde) {
