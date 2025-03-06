@@ -193,3 +193,8 @@
   text-decoration: underline;
   color: var(--color-boton-secundario);
 }
+
+.loading-message{
+  text-align: center;
+  color: var(--color-letras-secundario);
+}

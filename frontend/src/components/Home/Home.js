@@ -20,7 +20,7 @@ export const Home = () => {
   useEffect(() => {
     const fetchViajes = async () => {
       setLoading(true);  // Iniciar el estado de carga
-      setWarningMessage("Cargando viajes... Puede tardar hasta 50 segundos.");
+      setWarningMessage("Cargando viajes... Puede tardar hasta 50 segundos si el backend esta inactivo.");
       
       try {
         const response = await getAllViajes();
@@ -28,14 +28,15 @@ export const Home = () => {
         if (Array.isArray(response.data)) {
           setViajes(response.data);
           setFilteredViajes(response.data);
+          setLoading(false);  // Terminar el estado de carga
+          setWarningMessage("");  // Eliminar mensaje de advertencia
         } else {
           console.error('La respuesta no es un arreglo', response.data);
         }
       } catch (error) {
         console.error('Error al cargar los viajes:', error);
       } finally {
-        setLoading(false);  // Terminar el estado de carga
-        setWarningMessage("");  // Eliminar mensaje de advertencia
+        
       }
     };
   
@@ -86,9 +87,7 @@ export const Home = () => {
     <>
       <Header />
       <main className="App">
-        {/* Mostrar mensaje de advertencia si está cargando */}
-        {loading && <div className="loading-message">{warningMessage}</div>}
-
+       
         <section className={`sectionFiltros ${!showFilters ? 'collapsed' : ''}`}>
           <h2 className="tituloFiltros" onClick={() => setShowFilters(!showFilters)}>Filtros</h2>
           {showFilters && (
@@ -132,7 +131,7 @@ export const Home = () => {
             </form>
           )}
         </section>
-
+        {/* Mostrar mensaje de advertencia si está cargando */}
         <section>
           <h2 className="viajes">Viajes Programados</h2>
           <div className="viajes-list">
@@ -141,6 +140,7 @@ export const Home = () => {
             ))}
           </div>
         </section>
+        {loading && <div className="loading-message">{warningMessage}</div>}
         <div className="crear-viaje-button">
           <Link to="/create">
             <button>Crear Nuevo Viaje</button>
