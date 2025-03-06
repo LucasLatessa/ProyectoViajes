@@ -43,8 +43,8 @@ const TusViajes = ({ nickname }) => {
               <h3>{viaje.destino_direccion}</h3>
               <p><strong>Fecha:</strong> {new Date(viaje.fecha_hora).toLocaleDateString()}</p>
               <p><strong>Costo por Asiento:</strong> ${viaje.costo_por_asiento}</p>
-              <p><strong>Origen:</strong> {viaje.origen_direccion}</p>
-              <p><strong>Destino:</strong> {viaje.destino_direccion}</p>
+              <p><strong>Origen:</strong> {viaje.origen}</p>
+              <p><strong>Destino:</strong> {viaje.destino}</p>
               <Link to={`/viaje/${viaje.viaje_id}/postulaciones`}>
                 <button>Ver Postulaciones</button>
               </Link>

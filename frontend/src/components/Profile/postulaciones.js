@@ -78,8 +78,8 @@ const Postulaciones = () => {
       <h2>Postulaciones al viaje con:</h2>
       {viaje && (
         <>
-          <h4>Origen: {viaje.origen_direccion}</h4>
-          <h4>Destino: {viaje.destino_direccion}</h4>
+          <h4>Origen: {viaje.origen}</h4>
+          <h4>Destino: {viaje.destino}</h4>
           <h4>Asientos disponibles: {viaje.asientos_disponibles}</h4>
         </>
       )}
