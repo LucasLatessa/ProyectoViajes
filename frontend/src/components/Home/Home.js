@@ -19,13 +19,18 @@ export const Home = () => {
     const fetchViajes = async () => {
       try {
         const response = await getAllViajes();
-        setViajes(response.data);
-        setFilteredViajes(response.data);
+        console.log('Respuesta de la API:', response.data);  // Verifica la estructura de la respuesta
+        if (Array.isArray(response.data)) {
+          setViajes(response.data);
+          setFilteredViajes(response.data);
+        } else {
+          console.error('La respuesta no es un arreglo', response.data);
+        }
       } catch (error) {
         console.error('Error al cargar los viajes:', error);
       }
     };
-
+  
     fetchViajes();
   }, []);
 
