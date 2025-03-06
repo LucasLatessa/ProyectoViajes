@@ -14,9 +14,14 @@ export const Home = () => {
   const [dateHasta, setDateHasta] = useState("");
   const [filteredViajes, setFilteredViajes] = useState([]);
   const [showFilters, setShowFilters] = useState(false); // Estado para mostrar/ocultar filtros
+  const [loading, setLoading] = useState(false); // Estado de carga
+  const [warningMessage, setWarningMessage] = useState(""); // Estado para el mensaje de advertencia
 
   useEffect(() => {
     const fetchViajes = async () => {
+      setLoading(true);  // Iniciar el estado de carga
+      setWarningMessage("Cargando viajes... Puede tardar hasta 50 segundos.");
+      
       try {
         const response = await getAllViajes();
         console.log('Respuesta de la API:', response.data);  // Verifica la estructura de la respuesta
@@ -28,6 +33,9 @@ export const Home = () => {
         }
       } catch (error) {
         console.error('Error al cargar los viajes:', error);
+      } finally {
+        setLoading(false);  // Terminar el estado de carga
+        setWarningMessage("");  // Eliminar mensaje de advertencia
       }
     };
   
@@ -78,6 +86,9 @@ export const Home = () => {
     <>
       <Header />
       <main className="App">
+        {/* Mostrar mensaje de advertencia si está cargando */}
+        {loading && <div className="loading-message">{warningMessage}</div>}
+
         <section className={`sectionFiltros ${!showFilters ? 'collapsed' : ''}`}>
           <h2 className="tituloFiltros" onClick={() => setShowFilters(!showFilters)}>Filtros</h2>
           {showFilters && (
