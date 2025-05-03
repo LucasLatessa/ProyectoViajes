@@ -25,6 +25,7 @@ INSTALLED_APPS = [
 
 # Middleware de la aplicación
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,16 +82,14 @@ USE_I18N = True
 USE_TZ = True
 
 # Archivos estáticos (CSS, JavaScript, Imágenes)
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build', 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# Tipo de campo primario por defecto
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  
+#Tipo de campo primario por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configuración de seguridad
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-9hx6=5g-73)h%$&d4q$gg^v7bo85%w4=y@0s127j(^i@h)zktb')
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'True')
 
 ALLOWED_HOSTS = [
     'carsharee.vercel.app', 'proyectoviajes.onrender.com', '127.0.0.1', 'localhost', 'proyectoviajes-production.up.railway.app'
