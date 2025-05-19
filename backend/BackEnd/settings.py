@@ -25,7 +25,7 @@ INSTALLED_APPS = [
 
 # Middleware de la aplicación
 MIDDLEWARE = [
-    'middleware.restrict.RestrictToFrontendMiddleware',
+    'BackEnd.middleware.restrict.RestrictToFrontendMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
