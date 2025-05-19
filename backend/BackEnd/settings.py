@@ -93,6 +93,7 @@ DEBUG = os.environ.get('DEBUG', 'True')
 
 ALLOWED_HOSTS = [
     'carsharee.vercel.app',
+    'proyectoviajes.onrender.com',
 ]
 
 CORS_ALLOWED_ORIGINS = [
