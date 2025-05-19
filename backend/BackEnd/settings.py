@@ -89,7 +89,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configuración de seguridad
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-9hx6=5g-73)h%$&d4q$gg^v7bo85%w4=y@0s127j(^i@h)zktb')
-DEBUG = os.environ.get('DEBUG', 'True')
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = [
     'carsharee.vercel.app',
