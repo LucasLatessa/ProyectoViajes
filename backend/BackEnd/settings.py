@@ -92,12 +92,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-9hx6=5g-73)h%$&d4q$gg
 DEBUG = os.environ.get('DEBUG', 'True')
 
 ALLOWED_HOSTS = [
-    'carsharee.vercel.app', 'proyectoviajes.onrender.com', '127.0.0.1', 'localhost', 'proyectoviajes-production.up.railway.app'
+    'carsharee.vercel.app',
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4040", "http://localhost:3000", "http://localhost:8000", "https://localhost:4040",
-    "https://192.168.0.111:4040", "https://carsharee.vercel.app"
+   "https://carsharee.vercel.app",
 ]
 
 CORS_ALLOW_METHODS = ["GET", "OPTIONS", "POST", "PUT", "DELETE"]
@@ -108,9 +107,7 @@ SESSION_COOKIE_SECURE = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_TRUSTED_ORIGINS = [
-    f"https://{os.environ.get('NGROK_URL')}",
-    "http://localhost:8000", "https://localhost:8000", "http://localhost:80", "https://localhost:80",
-    "http://localhost:3000", "https://localhost:3000", "https://carsharee.vercel.app", "https://proyectoviajes.onrender.com"
+    "https://carsharee.vercel.app",
 ]
 
 # Configuración de correo electrónico
