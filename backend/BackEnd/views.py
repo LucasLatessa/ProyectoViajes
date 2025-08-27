@@ -4,6 +4,9 @@ from rest_framework.decorators import api_view
 from django.core.files.storage import default_storage
 
 
+def health_check(request):
+    return JsonResponse({"status": "ok"})
+
 def public(request: HttpRequest) -> JsonResponse:
 
     return JsonResponse(

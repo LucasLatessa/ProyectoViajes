@@ -12,7 +12,8 @@ urlpatterns =[
         name="index",
     ),
     path(route="api/public", view=views.public, name="public"),
-    
+    path(route="api/public", view=views.public, name="public"),
+    path('health/', views.health_check),
     path('admin/', admin.site.urls),
     path('usuarios/',include('usuarios.urls')),
     path('viajes/',include('viajes.urls')),
