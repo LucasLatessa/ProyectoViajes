@@ -12,14 +12,14 @@ jobs:
     steps:
       - name: Primer ping (despierta)
         run: |
-          curl -s -o /dev/null -w "%{http_code}" https://proyectoviajes.onrender.com/health || true
+          curl -s -o /dev/null -w "%{http_code}" https://proyectoviajes.onrender.com/health/ || true
 
       - name: Esperar 20 segundos
         run: sleep 20
 
       - name: Segundo ping (confirma)
         run: |
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://proyectoviajes.onrender.com/health)
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://proyectoviajes.onrender.com/health/)
           echo "Codigo de respuesta: $RESPONSE"
           if [ "$RESPONSE" -ne 200 ]; then
             echo "El backend no respondio 200 despues de despertarlo"
